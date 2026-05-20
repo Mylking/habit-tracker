@@ -1,0 +1,220 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@theme inline {
+  --color-bg-base: var(--bg-base);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-surface-hover: var(--bg-surface-hover);
+  --color-primary: var(--interactive-primary);
+  --color-primary-hover: var(--interactive-primary-hover);
+  --color-danger: var(--interactive-danger);
+  --color-success: var(--interactive-success);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-default: var(--border-default);
+  --color-checkbox-checked: var(--checkbox-checked);
+
+  /* shadcn shims */
+  --color-background: var(--bg-base);
+  --color-foreground: var(--text-primary);
+  --color-card: var(--bg-elevated);
+  --color-card-foreground: var(--text-primary);
+  --color-popover: var(--bg-elevated);
+  --color-popover-foreground: var(--text-primary);
+  --color-secondary: var(--bg-surface);
+  --color-secondary-foreground: var(--text-primary);
+  --color-muted: var(--bg-surface);
+  --color-muted-foreground: var(--text-secondary);
+  --color-accent: var(--bg-surface-hover);
+  --color-accent-foreground: var(--text-primary);
+  --color-destructive: var(--interactive-danger);
+  --color-destructive-foreground: #fff;
+  --color-border: var(--border-default);
+  --color-input: var(--border-default);
+  --color-ring: var(--interactive-primary);
+  --color-primary-foreground: #fff;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius: 8px;
+}
+
+:root,
+:root[data-theme="obsidian"] {
+  --bg-base: #000000;
+  --bg-elevated: #0a0a0a;
+  --bg-surface: #141414;
+  --bg-surface-hover: #1f1f1f;
+  --interactive-primary: #0ea5e9;
+  --interactive-primary-hover: #38bdf8;
+  --interactive-danger: #ef4444;
+  --interactive-success: #10b981;
+  --gradient-primary: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+  --gradient-danger: linear-gradient(135deg, #ef4444 0%, #f43f5e 100%);
+  --gradient-success: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
+  --gradient-streak: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1a1;
+  --text-tertiary: #737373;
+  --border-subtle: #262626;
+  --border-default: #404040;
+  --checkbox-checked: #0ea5e9;
+  --shadow-glow-primary: 0 0 20px rgba(14, 165, 233, 0.3);
+  --primary-rgb: 14, 165, 233;
+}
+
+:root[data-theme="midnight"] {
+  --bg-base: #0f1419;
+  --bg-elevated: #161b22;
+  --bg-surface: #1c2128;
+  --bg-surface-hover: #262d36;
+  --interactive-primary: #58a6ff;
+  --interactive-primary-hover: #79c0ff;
+  --interactive-danger: #f85149;
+  --interactive-success: #3fb950;
+  --gradient-primary: linear-gradient(135deg, #58a6ff 0%, #8b5cf6 100%);
+  --gradient-danger: linear-gradient(135deg, #f85149 0%, #ff6b6b 100%);
+  --gradient-success: linear-gradient(135deg, #3fb950 0%, #56d364 100%);
+  --gradient-streak: linear-gradient(135deg, #d29922 0%, #f0883e 100%);
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --text-tertiary: #6e7681;
+  --border-subtle: #21262d;
+  --border-default: #30363d;
+  --checkbox-checked: #58a6ff;
+  --shadow-glow-primary: 0 0 20px rgba(88, 166, 255, 0.25);
+  --primary-rgb: 88, 166, 255;
+}
+
+:root[data-theme="graphite"] {
+  --bg-base: #121212;
+  --bg-elevated: #1e1e1e;
+  --bg-surface: #2a2a2a;
+  --bg-surface-hover: #363636;
+  --interactive-primary: #00d4ff;
+  --interactive-primary-hover: #33ddff;
+  --interactive-danger: #ff4757;
+  --interactive-success: #00e676;
+  --gradient-primary: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+  --gradient-danger: linear-gradient(135deg, #ff4757 0%, #ff6348 100%);
+  --gradient-success: linear-gradient(135deg, #00e676 0%, #00c853 100%);
+  --gradient-streak: linear-gradient(135deg, #ffa726 0%, #ff9800 100%);
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --text-tertiary: #808080;
+  --border-subtle: #333333;
+  --border-default: #4a4a4a;
+  --checkbox-checked: #00d4ff;
+  --shadow-glow-primary: 0 0 20px rgba(0, 212, 255, 0.2);
+  --primary-rgb: 0, 212, 255;
+}
+
+@layer base {
+  * {
+    border-color: var(--border-subtle);
+  }
+  html,
+  body {
+    background: var(--bg-base);
+    color: var(--text-primary);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  body {
+    min-height: 100vh;
+  }
+}
+
+/* Checkbox */
+.habit-checkbox {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid var(--border-default);
+  border-radius: 4px;
+  background: var(--bg-elevated);
+  cursor: pointer;
+  transition: all 180ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.habit-checkbox:hover {
+  border-color: var(--interactive-primary);
+  transform: scale(1.08);
+}
+.habit-checkbox.checked {
+  background: var(--checkbox-checked);
+  border-color: var(--checkbox-checked);
+  box-shadow: var(--shadow-glow-primary);
+}
+.habit-checkbox.checked::after {
+  content: "✓";
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+}
+.habit-checkbox.past-incomplete {
+  border-color: var(--interactive-danger);
+  opacity: 0.55;
+}
+.habit-checkbox.future {
+  opacity: 0.25;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.habit-checkbox.today {
+  border-color: var(--interactive-primary);
+  border-width: 2px;
+  box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.15);
+}
+.habit-checkbox.today.checked {
+  box-shadow: var(--shadow-glow-primary), 0 0 0 3px rgba(var(--primary-rgb), 0.2);
+}
+
+.glass {
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--bg-elevated) 90%, transparent),
+    color-mix(in oklab, var(--bg-surface) 70%, transparent)
+  );
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(12px);
+}
+
+.gradient-primary {
+  background: var(--gradient-primary);
+}
+.gradient-streak {
+  background: var(--gradient-streak);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--interactive-primary);
+}
+
+.today-col {
+  background: rgba(var(--primary-rgb), 0.06);
+}
