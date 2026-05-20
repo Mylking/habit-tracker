@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 import { Flame, Mail, Lock, User as UserIcon, Eye, EyeOff } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { lovable } from "@/integrations/lovable/index";
 import { useAuth } from "@/hooks/use-auth";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -79,22 +78,27 @@ function AuthPage() {
   };
 
   const handleGoogle = async () => {
-    setBusy(true);
-    try {
-      const result = await lovable.auth.signInWithOAuth("google", {
-        redirect_uri: window.location.origin,
-      });
-      if (result.error) {
-        toast.error("Google sign-in failed", { description: String(result.error.message ?? result.error) });
-        return;
-      }
-      // Either redirected (browser navigates) or tokens set — useEffect will route home.
-    } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Google sign-in failed");
-    } finally {
-      setBusy(false);
-    }
-  };
+  setBusy(true);
+
+  try {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: window.location.origin,
+      },
+    });
+
+    if (error) throw error;
+  } catch (err) {
+    toast.error(
+      err instanceof Error
+        ? err.message
+        : "Google sign-in failed"
+    );
+  } finally {
+    setBusy(false);
+  }
+};
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-[var(--bg-base)] px-4 py-10">
